@@ -4,6 +4,3 @@ Thumbs.db
 .env
 .env.*
 *.log
-
-# Modelo das variáveis do painel (só os nomes) entra no git; os valores não.
-!/painel/.env.example
