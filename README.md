@@ -27,6 +27,8 @@ Qualquer hospedagem de arquivos estáticos serve para publicar: basta apontar pa
 
 Na Vercel, `site/vercel.json` faz cada página ter um endereço só (com barra no fim) e guarda em cache as fontes e as telas do app.
 
+Os links que o app compartilha (`/post/...`, `/artista/...` e `/agenda`, todos com `?ref=CODIGO`) ainda não abrem o app: isso depende do domínio próprio e da versão das lojas. Até lá, o `site/vercel.json` manda esses endereços para a página Baixar, com o `?ref` junto, num redirecionamento temporário. A mesma regra já vale para `/fa-clube/...`, o link do fã-clube que ainda vai entrar no app. Com o código no endereço, a página Baixar mostra o código de convite, com o botão de copiar e a dica de digitar no cadastro, põe o código no QR (e o texto do QR passa a dizer isso) e não pula direto para a loja. O código só aparece no formato que o app aceita: de 3 a 64 letras, números ou `_`.
+
 ## Antes de publicar
 
 - Os textos da Política de Privacidade e dos Termos de Uso passam pela revisão do jurídico da Imagine Music.
