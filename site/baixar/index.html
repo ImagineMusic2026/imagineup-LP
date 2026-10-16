@@ -28,7 +28,7 @@
     <section class="download-card">
       <div class="download-banner" aria-hidden="true"><span class="seta"></span></div>
       <h1>Baixar o ImagineUP para iPhone e Android</h1>
-      <p>Escaneie o código QR com o celular. Assim que o app chegar às lojas, este mesmo código leva direto para o download.</p>
+      <p id="instrucao-qr">Escaneie o código QR com o celular. Assim que o app chegar às lojas, este mesmo código leva direto para o download.</p>
       <div id="convite" class="download-convite" hidden>
         <p class="download-convite-titulo">Seu código de convite</p>
         <p id="convite-codigo" class="download-convite-codigo"></p>
@@ -56,7 +56,8 @@
   <script>
     // Links das lojas: preencher quando o app for publicado. Com eles preenchidos,
     // quem abre esta página (ou escaneia o QR) no celular vai direto para a loja
-    // certa, e os botões passam a funcionar.
+    // certa, menos quando o link traz um código de convite (?ref), e os botões
+    // passam a funcionar.
     const LOJAS = {
       ios: '',
       android: '',
@@ -72,13 +73,16 @@
       return /^[A-Za-z0-9_]{3,64}$/.test(compacto) ? compacto.toUpperCase() : null;
     }
 
-    // Os links de post, artista, agenda e fã-clube que o app compartilha caem
-    // aqui (site/vercel.json) até o app abrir direto pelo domínio. Sem o app
-    // aberto pelo link, quem chega precisa ver o código para digitar no
-    // cadastro, senão o convite se perde.
+    // Os links de post, artista e agenda que o app compartilha (e, quando o
+    // fã-clube entrar, os de fã-clube) caem aqui (site/vercel.json) até o app
+    // abrir direto pelo domínio. Sem o app aberto pelo link, quem chega precisa
+    // ver o código para digitar no cadastro, senão o convite se perde.
     function mostrarConvite(codigo) {
       document.getElementById('convite-codigo').textContent = codigo;
       document.getElementById('convite').hidden = false;
+      // Com o código, o QR abre esta página no celular, e não a loja.
+      document.getElementById('instrucao-qr').textContent =
+        'Escaneie o código QR para abrir esta página no celular, já com o código de convite.';
       const aviso = document.getElementById('convite-aviso');
       document.getElementById('convite-copiar').addEventListener('click', () => {
         if (!navigator.clipboard) { aviso.textContent = 'Selecione o código acima para copiar.'; return; }
