@@ -1522,6 +1522,58 @@ strong {
   line-height: 1.6;
 }
 
+/* O código de convite, quando a página abre por um link do app (?ref=) */
+.download-convite {
+  margin: 20px auto 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff0f5;
+}
+
+.download-convite-titulo {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.download-convite-codigo {
+  margin: 6px 0 0;
+  font: 800 clamp(22px, 6vw, 28px) / 1.2 Sora, Manrope, sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.download-convite-copiar {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border: 1px solid var(--pink-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--pink-strong);
+  font: 700 14px/1 Manrope, sans-serif;
+  cursor: pointer;
+}
+
+.download-convite-copiar:hover {
+  background: #ffe3ec;
+}
+
+.download-convite-dica {
+  margin: 12px 0 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.download-convite-aviso {
+  margin: 6px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+}
+
 .download-qr {
   width: min(220px, 66vw);
   aspect-ratio: 1;

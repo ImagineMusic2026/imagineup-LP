@@ -3,7 +3,11 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/:pagina/index.html", "destination": "/:pagina/", "permanent": true }
+    { "source": "/:pagina/index.html", "destination": "/:pagina/", "permanent": true },
+    { "source": "/post/:caminho*", "destination": "/baixar/", "permanent": false },
+    { "source": "/artista/:caminho*", "destination": "/baixar/", "permanent": false },
+    { "source": "/agenda/:caminho*", "destination": "/baixar/", "permanent": false },
+    { "source": "/fa-clube/:caminho*", "destination": "/baixar/", "permanent": false }
   ],
   "headers": [
     {
