@@ -28,12 +28,12 @@
     <section class="download-card">
       <div class="download-banner" aria-hidden="true"><span class="seta"></span></div>
       <h1>Baixar o ImagineUP</h1>
-      <p id="instrucao-qr">Escaneie o código QR com o celular. No Android, ele leva direto ao Google Play, onde o app está por enquanto só no Brasil.</p>
+      <p id="instrucao-qr">Escaneie o código QR com o celular. No Android™, ele leva direto ao Google Play, onde o app está por enquanto só no Brasil.</p>
       <div id="convite" class="download-convite" hidden>
         <p class="download-convite-titulo">Seu código de convite</p>
         <p id="convite-codigo" class="download-convite-codigo"></p>
         <button type="button" id="convite-copiar" class="download-convite-copiar">Copiar código</button>
-        <p class="download-convite-dica">Ao criar sua conta no app, na pergunta do nome, toque em “Tenho um código de convite” e digite este código. Se você entrar com o Google, no Android, o app pede o código logo depois de criar a conta: digite nessa hora, porque a pergunta não volta se o app fechar.</p>
+        <p class="download-convite-dica">Ao criar sua conta no app, na pergunta do nome, toque em “Tenho um código de convite” e digite este código. Se você entrar com o Google, no Android™, o app pede o código logo depois de criar a conta: digite nessa hora, porque a pergunta não volta se o app fechar.</p>
         <p id="convite-aviso" class="download-convite-aviso" role="status"></p>
       </div>
       <div id="qr" class="download-qr" role="img" aria-label="Código QR que abre esta página no celular"></div>
@@ -69,10 +69,11 @@
       return /^[A-Za-z0-9_]{3,64}$/.test(compacto) ? compacto.toUpperCase() : null;
     }
 
-    // Os links de post, artista e agenda que o app compartilha (e, quando o
-    // fã-clube entrar, os de fã-clube) caem aqui (site/vercel.json) até o app
-    // abrir direto pelo domínio. Sem o app aberto pelo link, quem chega precisa
-    // ver o código para digitar no cadastro, senão o convite se perde.
+    // O link do Convidar (/?ref=) e os de post, artista e agenda que o app
+    // compartilha (e, quando o fã-clube entrar, os de fã-clube) caem aqui
+    // (site/vercel.json) até o app abrir direto pelo domínio. Sem o app aberto
+    // pelo link, quem chega precisa ver o código para digitar no cadastro,
+    // senão o convite se perde.
     function mostrarConvite(codigo) {
       document.getElementById('convite-codigo').textContent = codigo;
       document.getElementById('convite').hidden = false;
@@ -104,7 +105,10 @@
       for (const botao of document.querySelectorAll('.loja-pill')) {
         const link = LOJAS[botao.dataset.loja];
         if (link) botao.href = link;
-        else botao.setAttribute('aria-disabled', 'true');
+        else {
+          botao.setAttribute('role', 'link');
+          botao.setAttribute('aria-disabled', 'true');
+        }
       }
       if (LOJAS.ios && LOJAS.android) document.getElementById('nota-lojas').hidden = true;
 
