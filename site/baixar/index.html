@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Baixar o ImagineUP para iPhone e Android</title>
-  <meta name="description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, para iPhone e Android.">
+  <title>Baixar o ImagineUP</title>
+  <meta name="description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, no Google Play para Android. No iPhone, o app chega em breve.">
   <meta name="theme-color" content="#F6F6F8">
   <link rel="icon" href="../assets/favicon.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -12,8 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ImagineUP">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Baixar o ImagineUP para iPhone e Android">
-  <meta property="og:description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, para iPhone e Android.">
+  <meta property="og:title" content="Baixar o ImagineUP">
+  <meta property="og:description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, no Google Play para Android. No iPhone, o app chega em breve.">
   <meta property="og:image" content="https://imagineup-painel.vercel.app/assets/compartilhar.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -27,40 +27,36 @@
   <main class="baixar">
     <section class="download-card">
       <div class="download-banner" aria-hidden="true"><span class="seta"></span></div>
-      <h1>Baixar o ImagineUP para iPhone e Android</h1>
-      <p id="instrucao-qr">Escaneie o código QR com o celular. Assim que o app chegar às lojas, este mesmo código leva direto para o download.</p>
+      <h1>Baixar o ImagineUP</h1>
+      <p id="instrucao-qr">Escaneie o código QR com o celular. No Android™, ele leva direto ao Google Play, onde o app está por enquanto só no Brasil.</p>
       <div id="convite" class="download-convite" hidden>
         <p class="download-convite-titulo">Seu código de convite</p>
         <p id="convite-codigo" class="download-convite-codigo"></p>
         <button type="button" id="convite-copiar" class="download-convite-copiar">Copiar código</button>
-        <p class="download-convite-dica">Ao criar sua conta no app, digite este código no campo “Código de convite”.</p>
+        <p class="download-convite-dica">Ao criar sua conta no app, na pergunta do nome, toque em “Tenho um código de convite” e digite este código. Se você entrar com o Google, no Android™, o app pede o código logo depois de criar a conta: digite nessa hora, porque a pergunta não volta se o app fechar.</p>
         <p id="convite-aviso" class="download-convite-aviso" role="status"></p>
       </div>
       <div id="qr" class="download-qr" role="img" aria-label="Código QR que abre esta página no celular"></div>
+      <!-- só texto, sem os ícones das lojas: como imagem, as regras do Google Play só aceitam o selo oficial -->
       <div class="loja-pills">
-        <a class="loja-pill" data-loja="ios">
-          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          App Store
-        </a>
-        <a class="loja-pill" data-loja="android">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#34A853" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#EA4335" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/><path fill="#FBBC04" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/></svg>
-          Google Play
-        </a>
+        <a class="loja-pill" data-loja="ios">App Store</a>
+        <a class="loja-pill" data-loja="android" href="https://play.google.com/store/apps/details?id=br.com.imaginegroup.imagineup">Google Play</a>
       </div>
-      <p id="nota-lojas" class="download-nota">Em breve na App Store e no Google Play.</p>
+      <p id="nota-lojas" class="download-nota">Em breve na App Store, para iPhone.</p>
+      <p class="download-nota">Android, Google e Google Play são marcas registradas da Google LLC.</p>
     </section>
     <a class="download-voltar" href="../">Voltar para o site</a>
   </main>
 
   <script src="../assets/qrcode.min.js"></script>
   <script>
-    // Links das lojas: preencher quando o app for publicado. Com eles preenchidos,
-    // quem abre esta página (ou escaneia o QR) no celular vai direto para a loja
-    // certa, menos quando o link traz um código de convite (?ref), e os botões
-    // passam a funcionar.
+    // Links das lojas (o da App Store entra quando o app chegar ao iPhone).
+    // Com o link preenchido, quem abre esta página (ou escaneia o QR) naquele
+    // celular vai direto para a loja, menos quando o link traz um código de
+    // convite (?ref), e o botão da loja passa a funcionar.
     const LOJAS = {
       ios: '',
-      android: '',
+      android: 'https://play.google.com/store/apps/details?id=br.com.imaginegroup.imagineup',
     };
 
     // O código de convite que veio no link (?ref=), como o app e o servidor
@@ -73,10 +69,11 @@
       return /^[A-Za-z0-9_]{3,64}$/.test(compacto) ? compacto.toUpperCase() : null;
     }
 
-    // Os links de post, artista e agenda que o app compartilha (e, quando o
-    // fã-clube entrar, os de fã-clube) caem aqui (site/vercel.json) até o app
-    // abrir direto pelo domínio. Sem o app aberto pelo link, quem chega precisa
-    // ver o código para digitar no cadastro, senão o convite se perde.
+    // O link do Convidar (/?ref=) e os de post, artista e agenda que o app
+    // compartilha (e, quando o fã-clube entrar, os de fã-clube) caem aqui
+    // (site/vercel.json) até o app abrir direto pelo domínio. Sem o app aberto
+    // pelo link, quem chega precisa ver o código para digitar no cadastro,
+    // senão o convite se perde.
     function mostrarConvite(codigo) {
       document.getElementById('convite-codigo').textContent = codigo;
       document.getElementById('convite').hidden = false;
@@ -108,7 +105,10 @@
       for (const botao of document.querySelectorAll('.loja-pill')) {
         const link = LOJAS[botao.dataset.loja];
         if (link) botao.href = link;
-        else botao.setAttribute('aria-disabled', 'true');
+        else {
+          botao.setAttribute('role', 'link');
+          botao.setAttribute('aria-disabled', 'true');
+        }
       }
       if (LOJAS.ios && LOJAS.android) document.getElementById('nota-lojas').hidden = true;
 
