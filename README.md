@@ -34,4 +34,5 @@ Os links que o app compartilha (`/post/...`, `/artista/...` e `/agenda`, todos c
 ## Antes de publicar
 
 - Os textos da Política de Privacidade e dos Termos de Uso passam pela revisão do jurídico da Imagine Music.
-- Quando o app estiver nas lojas, preencher os links da App Store e do Google Play em `LOJAS`, no script de `site/baixar/index.html`, e nos links iOS e Android do rodapé de cada página. Com os links preenchidos, quem abre a página Baixar no celular vai direto para a loja certa.
+- O link do Google Play já está em `LOJAS`, no script de `site/baixar/index.html`, no link Android do rodapé de cada página e nas páginas que citam a loja (início, Sobre, Novidades e FAQ). Quando o app chegar à App Store, preencher o link dela nos mesmos lugares (o `LOJAS.ios`, o botão da App Store na página inicial e o link iOS do rodapé) e tirar os avisos de em breve. Com o link preenchido, quem abre a página Baixar naquele celular vai direto para a loja.
+- Os botões das lojas são só texto, sem ícone nem desenho de selo: como imagem, as regras de marca do Google Play só aceitam o selo oficial, baixado do Partner Marketing Hub e sujeito à revisão do Google. O rodapé de cada página e a página Baixar trazem a frase de marca do Google.
