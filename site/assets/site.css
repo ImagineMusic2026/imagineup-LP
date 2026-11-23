@@ -956,7 +956,8 @@ a.store-badge:hover {
   color: rgba(255, 255, 255, 0.72);
 }
 
-a.store-badge:focus-visible {
+a.store-badge:focus-visible,
+.loja-pill:focus-visible {
   border-radius: 999px;
 }
 
