@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Baixar o ImagineUP</title>
-  <meta name="description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, no Google Play para Android. No iPhone, o app chega em breve.">
+  <meta name="description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, na App Store para iPhone e no Google Play para Android.">
   <meta name="theme-color" content="#F6F6F8">
   <link rel="icon" href="../assets/favicon.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -13,7 +13,7 @@
   <meta property="og:site_name" content="ImagineUP">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Baixar o ImagineUP">
-  <meta property="og:description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, no Google Play para Android. No iPhone, o app chega em breve.">
+  <meta property="og:description" content="Baixe o ImagineUP, a central de fãs oficial dos artistas da Imagine Music, na App Store para iPhone e no Google Play para Android.">
   <meta property="og:image" content="https://imagineup-painel.vercel.app/assets/compartilhar.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@
     <section class="download-card">
       <div class="download-banner" aria-hidden="true"><span class="seta"></span></div>
       <h1>Baixar o ImagineUP</h1>
-      <p id="instrucao-qr">Escaneie o código QR com o celular. No Android™, ele leva direto ao Google Play, onde o app está por enquanto só no Brasil.</p>
+      <p id="instrucao-qr">Escaneie o código QR com o celular. Ele leva direto à App Store, no iPhone, ou ao Google Play, no Android™. Por enquanto, o app está só no Brasil.</p>
       <div id="convite" class="download-convite" hidden>
         <p class="download-convite-titulo">Seu código de convite</p>
         <p id="convite-codigo" class="download-convite-codigo"></p>
@@ -37,25 +37,24 @@
         <p id="convite-aviso" class="download-convite-aviso" role="status"></p>
       </div>
       <div id="qr" class="download-qr" role="img" aria-label="Código QR que abre esta página no celular"></div>
-      <!-- só texto, sem os ícones das lojas: como imagem, as regras do Google Play só aceitam o selo oficial -->
+      <!-- só texto, sem os ícones das lojas: como imagem, as regras do Google Play e da Apple só aceitam o selo oficial -->
       <div class="loja-pills">
-        <a class="loja-pill" data-loja="ios">App Store</a>
+        <a class="loja-pill" data-loja="ios" href="https://apps.apple.com/br/app/imagineup/id6838384976">App Store</a>
         <a class="loja-pill" data-loja="android" href="https://play.google.com/store/apps/details?id=br.com.imaginegroup.imagineup">Google Play</a>
       </div>
-      <p id="nota-lojas" class="download-nota">Em breve na App Store, para iPhone.</p>
       <p class="download-nota">Android, Google e Google Play são marcas registradas da Google LLC.</p>
+      <p class="download-nota">Apple e iPhone são marcas comerciais da Apple Inc., registradas nos EUA e em outros países e regiões. App Store é uma marca de serviço da Apple Inc.</p>
     </section>
     <a class="download-voltar" href="../">Voltar para o site</a>
   </main>
 
   <script src="../assets/qrcode.min.js"></script>
   <script>
-    // Links das lojas (o da App Store entra quando o app chegar ao iPhone).
-    // Com o link preenchido, quem abre esta página (ou escaneia o QR) naquele
-    // celular vai direto para a loja, menos quando o link traz um código de
-    // convite (?ref), e o botão da loja passa a funcionar.
+    // Links das lojas. Quem abre esta página (ou escaneia o QR) no iPhone ou
+    // no Android vai direto para a loja, menos quando o link traz um código
+    // de convite (?ref). Loja sem link fica com o botão desligado.
     const LOJAS = {
-      ios: '',
+      ios: 'https://apps.apple.com/br/app/imagineup/id6838384976',
       android: 'https://play.google.com/store/apps/details?id=br.com.imaginegroup.imagineup',
     };
 
@@ -106,11 +105,11 @@
         const link = LOJAS[botao.dataset.loja];
         if (link) botao.href = link;
         else {
+          botao.removeAttribute('href');
           botao.setAttribute('role', 'link');
           botao.setAttribute('aria-disabled', 'true');
         }
       }
-      if (LOJAS.ios && LOJAS.android) document.getElementById('nota-lojas').hidden = true;
 
       // O QR aponta para esta própria página, então vale em qualquer domínio
       // em que o site for publicado. Com o código, ele vai junto para o celular.
