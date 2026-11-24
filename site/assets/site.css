@@ -933,8 +933,8 @@ strong {
 }
 
 /* Só texto, sem os ícones nem o desenho dos selos oficiais: como imagem, as
-   regras do Google Play só aceitam o selo oficial. A loja que já tem o app é
-   um link; a que ainda não tem fica só contornada, sem cara de botão. */
+   regras do Google Play e da Apple só aceitam o selo oficial. As duas lojas
+   são links. */
 .store-badge {
   display: inline-block;
   padding: 14px 28px;
@@ -959,16 +959,6 @@ a.store-badge:hover {
 a.store-badge:focus-visible,
 .loja-pill:focus-visible {
   border-radius: 999px;
-}
-
-.store-badge--em-breve {
-  border-color: #cfcfd8;
-  background: transparent;
-  color: var(--ink-2);
-}
-
-.store-badge--em-breve strong {
-  color: var(--ink);
 }
 
 /* Documentos */
@@ -1620,8 +1610,8 @@ a.store-badge:focus-visible,
   background: #1f1f24;
 }
 
-/* sem link da loja (antes da publicação) o botão fica só como indicação,
-   contornado como o "Em breve" da página inicial */
+/* loja sem link: o script da Baixar tira o href e marca o botão como
+   desligado, e ele fica só contornado, como indicação */
 .loja-pill:not([href]) {
   cursor: default;
   background: transparent;
