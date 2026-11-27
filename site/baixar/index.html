@@ -29,11 +29,15 @@
       <div class="download-banner" aria-hidden="true"><span class="seta"></span></div>
       <h1>Baixar o ImagineUP</h1>
       <p id="instrucao-qr">Escaneie o código QR com o celular. Ele leva direto à App Store, no iPhone, ou ao Google Play, no Android™. Por enquanto, o app está só no Brasil.</p>
+      <div id="abrir" class="download-abrir" hidden>
+        <p class="download-abrir-titulo">Já tem o ImagineUP?</p>
+        <a id="abrir-link" class="btn">Abrir no app</a>
+      </div>
       <div id="convite" class="download-convite" hidden>
         <p class="download-convite-titulo">Seu código de convite</p>
         <p id="convite-codigo" class="download-convite-codigo"></p>
         <button type="button" id="convite-copiar" class="download-convite-copiar">Copiar código</button>
-        <p class="download-convite-dica">Ao criar sua conta no app, na pergunta do nome, toque em “Tenho um código de convite” e digite este código. Se você entrar com o Google, no Android™, o app pede o código logo depois de criar a conta: digite nessa hora, porque a pergunta não volta se o app fechar.</p>
+        <p class="download-convite-dica">Ao criar sua conta no app, na pergunta do nome, toque em “Tenho um código de convite” e digite este código. Se você entrar com o Google, no Android™, ou com a Apple, no iPhone, o app pede o código logo depois de criar a conta: digite nessa hora, porque a pergunta não volta se o app fechar.</p>
         <p id="convite-aviso" class="download-convite-aviso" role="status"></p>
       </div>
       <div id="qr" class="download-qr" role="img" aria-label="Código QR que abre esta página no celular"></div>
@@ -68,11 +72,10 @@
       return /^[A-Za-z0-9_]{3,64}$/.test(compacto) ? compacto.toUpperCase() : null;
     }
 
-    // O link do Convidar (/?ref=) e os de post, artista e agenda que o app
-    // compartilha (e, quando o fã-clube entrar, os de fã-clube) caem aqui
-    // (site/vercel.json) até o app abrir direto pelo domínio. Sem o app aberto
-    // pelo link, quem chega precisa ver o código para digitar no cadastro,
-    // senão o convite se perde.
+    // O link do Convidar (/?ref=) e os de post, central, agenda e fã-clube que
+    // o app compartilha caem aqui (site/vercel.json) até o app abrir direto
+    // pelo domínio. Quem ainda não tem o app precisa ver o código para digitar
+    // no cadastro, senão o convite se perde.
     function mostrarConvite(codigo) {
       document.getElementById('convite-codigo').textContent = codigo;
       document.getElementById('convite').hidden = false;
@@ -89,17 +92,51 @@
       });
     }
 
+    // Quem já tem o app abre o link nele pelo esquema imagineup://, com o
+    // código (?ref=), e o app conta a visita para quem convidou (seção 20 da
+    // nota do app). A página do link (post, central, agenda ou fã-clube) chega
+    // no ?abrir=, pelo site/vercel.json. Sem ela, ou fora do formato, vai o
+    // link curto do convite (c/CODIGO), que abre o app no início.
+    const APP = { esquema: 'imagineup', pacoteAndroid: 'br.com.imaginegroup.imagineup' };
+    const PAGINA_DO_APP =
+      /^(?:post\/[A-Za-z0-9_-]{1,128}|artista\/[a-z0-9_]{3,30}|fa-clube\/[A-Za-z0-9_-]{1,128}|agenda)$/;
+
+    function paginaDoApp() {
+      const bruta = new URLSearchParams(location.search).get('abrir');
+      if (!bruta) return null;
+      const pagina = bruta.replace(/^\/+|\/+$/g, '');
+      return PAGINA_DO_APP.test(pagina) ? pagina : null;
+    }
+
+    function linkDoApp(codigo, paginaNoApp, ehAndroid) {
+      const alvo = paginaNoApp
+        ? `${paginaNoApp}?ref=${encodeURIComponent(codigo)}`
+        : `c/${encodeURIComponent(codigo)}`;
+      if (!ehAndroid) return `${APP.esquema}://${alvo}`;
+      // No Android, o intent abre o app e, sem ele instalado, leva ao Google Play.
+      const loja = encodeURIComponent(LOJAS.android);
+      return `intent://${alvo}#Intent;scheme=${APP.esquema};package=${APP.pacoteAndroid};S.browser_fallback_url=${loja};end`;
+    }
+
+    function mostrarAbrirNoApp(codigo, paginaNoApp, ehAndroid) {
+      document.getElementById('abrir-link').href = linkDoApp(codigo, paginaNoApp, ehAndroid);
+      document.getElementById('abrir').hidden = false;
+    }
+
     (() => {
       const codigo = codigoDoConvite();
+      const paginaNoApp = codigo ? paginaDoApp() : null;
       if (codigo) mostrarConvite(codigo);
 
       const ua = navigator.userAgent;
       const ehIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       const ehAndroid = /Android/.test(ua);
       // Com um código no link, a página fica: a pessoa vê o código antes de ir
-      // à loja, e os botões levam a ela.
+      // à loja, e os botões levam a ela. No celular, quem já tem o app abre o
+      // link nele.
       if (!codigo && ehIOS && LOJAS.ios) { location.replace(LOJAS.ios); return; }
       if (!codigo && ehAndroid && LOJAS.android) { location.replace(LOJAS.android); return; }
+      if (codigo && (ehIOS || ehAndroid)) mostrarAbrirNoApp(codigo, paginaNoApp, ehAndroid);
 
       for (const botao of document.querySelectorAll('.loja-pill')) {
         const link = LOJAS[botao.dataset.loja];
@@ -112,9 +149,13 @@
       }
 
       // O QR aponta para esta própria página, então vale em qualquer domínio
-      // em que o site for publicado. Com o código, ele vai junto para o celular.
+      // em que o site for publicado. Com o código, ele vai junto para o
+      // celular, com a página do link no app.
       const pagina = location.href.split('#')[0].split('?')[0];
-      const destino = codigo ? `${pagina}?ref=${encodeURIComponent(codigo)}` : pagina;
+      const busca = new URLSearchParams();
+      if (codigo) busca.set('ref', codigo);
+      if (paginaNoApp) busca.set('abrir', paginaNoApp);
+      const destino = codigo ? `${pagina}?${busca}` : pagina;
       window.QRCode.toString(destino, {
         type: 'svg',
         margin: 0,
