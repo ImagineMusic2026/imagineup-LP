@@ -1636,12 +1636,6 @@ a.store-badge:focus-visible,
   color: var(--ink-2);
 }
 
-.download-nota {
-  margin: 14px 0 0;
-  color: var(--ink-3);
-  font-size: 13px;
-}
-
 .download-voltar {
   color: var(--ink-3);
   font-size: 14px;
