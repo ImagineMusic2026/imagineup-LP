@@ -1521,6 +1521,18 @@ a.store-badge:focus-visible,
   line-height: 1.6;
 }
 
+/* Quem já tem o app abre o link nele: só no celular, com o código (?ref=) */
+.download-abrir {
+  margin: 20px auto 0;
+}
+
+.download-abrir-titulo {
+  margin: 0 0 10px;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 /* O código de convite, quando a página abre por um link do app (?ref=) */
 .download-convite {
   margin: 20px auto 0;
